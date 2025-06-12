@@ -7,6 +7,7 @@ const Navbar = () => {
       <Linkto name={"Acceuil"} lien={"/"} />
       <Linkto name={"About"} lien={"/about"} />
       <Linkto name={"Contact"} lien={"/contact"} />
+      <Linkto name={"Products"} lien={"/products"} />
     </nav>
   );
 };

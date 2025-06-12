@@ -2,8 +2,16 @@ import React from "react";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
 import Button from "./Button";
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  // declaration function, variable api ect
+  let navigate = useNavigate();
+  const handleClick = () => {
+    //  traitement
+    //  redirection vers page login
+    navigate("/login");
+  };
   const isConnected = false;
   return (
     <header className="flex items-center justify-between p-4 bg-white shadow-md">
@@ -14,7 +22,7 @@ const Header = () => {
           <Button name="Deconnexion" />
         ) : (
           <>
-            <Button name="Connexion" />
+            <Button name="Connexion" onClick={handleClick} />
             <Button
               name="Inscription"
               style={{

@@ -4,7 +4,6 @@ import Header from "../components/Header";
 const Accueil = () => {
   return (
     <>
-      <Header />
       <section className="bg-gray-50 py-20 px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
