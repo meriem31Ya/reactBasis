@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router";
-import Accueil from "./pages/authentification/Accueil";
-import About from "./pages/authentification/About";
-import Contact from "./pages/authentification/Contact";
+import Accueil from "./pages/Accueil";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 const App = () => {
   return (
