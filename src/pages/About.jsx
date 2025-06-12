@@ -1,11 +1,12 @@
 import React from "react";
-import Header from "../../components/Header";
+import Header from "../components/Header";
 
 const About = () => {
   return (
     <div>
+      {" "}
       <Header />
-      hello je suis la dans about
+      je suis dans about
     </div>
   );
 };
