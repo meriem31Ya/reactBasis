@@ -1,33 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
+import { getData } from "../services/getProducts";
 
 const Products = () => {
   // fetch mes données
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
   const [isLoading, setisLoading] = useState(true);
 
   const refSearch = useRef(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("https://api.escuelajs.co/api/v1/products");
-        const data = await res.json();
-        console.log({ data });
-        setProducts(data);
-        setisLoading(false);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setisLoading(false);
-      }
+    const response = async () => {
+      const pathname = search ? `/?title=${search}` : "";
+      const data = await getData(pathname);
+      setProducts(data);
+      setisLoading(false);
     };
-    fetchProducts();
-  }, []);
+    response();
+  }, [search]);
 
   const handleSubmit = () => {
     const value = refSearch.current.value;
+    setSearch(value);
   };
 
   return (
