@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
 const ProductDetail = () => {
+  // recuperer le token
+
   const { id_product } = useParams();
 
   const [product, setProduct] = useState(null);

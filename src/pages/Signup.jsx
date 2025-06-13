@@ -49,7 +49,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto pt-6 p-4 bg-white rounded-xl shadow-md">
+    <div className=" mt-16 max-w-md mx-auto pt-6 p-4 bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-bold mb-4">Inscription</h2>
       <form action="" onSubmit={handleSubmit} className="space-y-4">
         <input
