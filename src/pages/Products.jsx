@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import { getData } from "../services/getProducts";
+import { debounce } from "../utils/functions";
 
 const Products = () => {
   // fetch mes données
@@ -26,6 +27,11 @@ const Products = () => {
     setSearch(value);
   };
 
+  const handleSearch = debounce((e) => {
+    const value = e.target.value;
+    setSearch(value);
+  }, 1000);
+
   return (
     <div>
       {isLoading ? (
@@ -43,6 +49,7 @@ const Products = () => {
               type="text"
               placeholder="rechercher .."
               className="px-4 py-2 border border-gray-300 rounded-lg"
+              onChange={handleSearch}
             />
             <button
               className="px-4 py-2 bg-blue-500 text-white"
