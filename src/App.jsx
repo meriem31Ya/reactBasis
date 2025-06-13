@@ -7,7 +7,8 @@ import Contact from "./pages/Contact";
 import LayoutApp from "./pages/LayoutApp";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
-import Product from "./pages/Product";
+import Product from "./pages/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="/products">
           <Route index element={<Products />} />
-          <Route path=":id_product" element={<Product />} />
+          <Route path=":id_product" element={<ProductDetail />} />
         </Route>
 
         <Route path="login" element={<Login />} />
