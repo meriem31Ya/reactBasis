@@ -1,0 +1,45 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "app_annonces",
+    "collectionId": "d0ca4507-c6ef-4943-a7d6-dc9f23bf81f5",
+    "dateExported": "2025-06-13T11:46:58.042Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "38ab2cb2-bd16-49fd-a076-127f9690f868",
+            "colId": "d0ca4507-c6ef-4943-a7d6-dc9f23bf81f5",
+            "containerId": "",
+            "name": "Signup",
+            "url": "https://back-annonce-production-4274.up.railway.app/api/v1/auth/signup",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2025-06-13T10:57:46.219Z",
+            "modified": "2025-06-13T11:41:35.560Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"username\",\n  \"email\": \"test@gmail.vom\",\n  \"password\": \"password\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "0600ca34-aed8-4154-bd1d-1fb94166d9aa",
+            "colId": "d0ca4507-c6ef-4943-a7d6-dc9f23bf81f5",
+            "containerId": "",
+            "name": "Login",
+            "url": "https://back-annonce-production-4274.up.railway.app/api/v1/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2025-06-13T11:00:25.211Z",
+            "modified": "2025-06-13T11:44:09.284Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \n  \"email\": \"email@gmail.vom\",\n  \"password\": \"password\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "o6m5lDZF1S9Y2KibHPonVcHnV_rKdG3JFRcPgOE78caIkPMg3YhmsbY5iG0j48tZ2JjDqlrmQ8P-ar8x498ZqQ"
+}
