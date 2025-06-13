@@ -7,10 +7,10 @@ import { useNavigate } from "react-router";
 const Header = () => {
   // declaration function, variable api ect
   let navigate = useNavigate();
-  const handleClick = () => {
+  const handleClick = (linkTo) => {
     //  traitement
     //  redirection vers page login
-    navigate("/login");
+    navigate(linkTo);
   };
   const isConnected = false;
   return (
@@ -22,9 +22,10 @@ const Header = () => {
           <Button name="Deconnexion" />
         ) : (
           <>
-            <Button name="Connexion" onClick={handleClick} />
+            <Button name="Connexion" onClick={() => handleClick("/login")} />
             <Button
               name="Inscription"
+              onClick={() => handleClick("/signup")}
               style={{
                 backgroundColor: "#4CAF50",
               }}
