@@ -12,12 +12,18 @@ import ProductDetail from "./pages/ProductDetail";
 import Signup from "./pages/Signup";
 import { AuthContext } from "./contexts/auth.context";
 import useLogicApp from "./hooks/useLogicApp";
+import Users from "./pages/Users";
+import Annonces from "./pages/Annonces";
+import LayoutDashboard from "./pages/LayoutDashboard";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./pages/PrivateRoute";
+import PublicRoute from "./pages/PublicRoute";
 
 const App = () => {
-  const [token, setToken] = useLogicApp();
+  const [token, user, setToken] = useLogicApp();
 
   return (
-    <AuthContext.Provider value={{ token, setToken }}>
+    <AuthContext.Provider value={{ token, user, setToken }}>
       <Routes>
         <Route path="/" element={<LayoutApp />}>
           <Route index element={<Accueil />} />
@@ -28,8 +34,27 @@ const App = () => {
             <Route path=":id_product" element={<ProductDetail />} />
           </Route>
 
-          <Route path="login" element={<Login />} />
+          <Route
+            path="login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
           <Route path="signup" element={<Signup />} />
+          <Route
+            path="dashboard"
+            element={
+              <PrivateRoute>
+                <LayoutDashboard />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path={"userinfos"} element={<Users />} />
+            <Route path={"annonces"} element={<Annonces />} />
+          </Route>
         </Route>
 
         {/*  routes  */}

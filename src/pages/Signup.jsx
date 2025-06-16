@@ -1,20 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import * as Yup from "yup";
+import { validationSchema } from "../validators/Signup.validate";
 
 //schéma
-const validationSchema = Yup.object({
-  username: Yup.string()
-    .min(3, "Le username doit avoir min 3 caractères")
-    .required("Le username est requis"),
-  email: Yup.string()
-    .email("email invalide")
-    .required("Ce champ est obligatoire"),
-  password: Yup.string()
-    .min(8, "Mot de passe trop court")
-    .required("Ce champ est obligatoire"),
-});
 
 const Signup = () => {
   // valider le schéma par rapport à nos données

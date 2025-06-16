@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { AuthContext } from "../contexts/auth.context";
+import { ROLES } from "../constants";
 
 const Login = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { setToken } = useContext(AuthContext);
 
@@ -15,27 +17,28 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        "https://back-annonce-production-4274.up.railway.app/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`${API_URL}/v1/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       console.log(data);
 
       if (data.success) {
-        // recuperer le Token
-        // save dans le localstorage
-        // affichage d'un toast
+        const role = data.user.role;
         setToken(data?.accessToken);
         localStorage.setItem("access_token", data?.accessToken);
+        localStorage.setItem("user", JSON.stringify(data?.user));
         toast.success("Connexion réussie");
-        navigate("/");
+
+        if (role === ROLES.admin) {
+          return navigate("/dashboard");
+        } else {
+          navigate("/");
+        }
       }
     } catch (error) {
       return console.log({ error });
