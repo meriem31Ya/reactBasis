@@ -15,16 +15,13 @@ const Signup = () => {
     // recuperer les données du formulaire.
     // faire un appel API
     try {
-      const response = await fetch(
-        "https://back-annonce-production-4274.up.railway.app/api/v1/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("31.97.154.145/api/v1/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       const data = await response.json();
       if (data?.success) {
