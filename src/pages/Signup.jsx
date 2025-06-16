@@ -1,20 +1,39 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import * as Yup from "yup";
+
+//schéma
+const validationSchema = Yup.object({
+  username: Yup.string()
+    .min(3, "Le username doit avoir min 3 caractères")
+    .required("Le username est requis"),
+  email: Yup.string()
+    .email("email invalide")
+    .required("Ce champ est obligatoire"),
+  password: Yup.string()
+    .min(8, "Mot de passe trop court")
+    .required("Ce champ est obligatoire"),
+});
 
 const Signup = () => {
+  // valider le schéma par rapport à nos données
+
+  //  afficher les erreurs si elles existent
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // recuperer les données du formulaire.
     // faire un appel API
     try {
+      await validationSchema.validate(formData, { abortEarly: false });
       const response = await fetch(
         "http://31.97.154.145:3000/api/v1/auth/signup",
         {
@@ -35,7 +54,15 @@ const Signup = () => {
       }
       toast.error(data?.message || "Une erreur s'est produite");
     } catch (error) {
-      toast.error(error || "Une erreur s'est produite");
+      if (error.name === "ValidationError") {
+        const formErrors = {};
+        error.inner.forEach((err) => {
+          formErrors[err.path] = err.message;
+        });
+        setErrors(formErrors);
+      } else {
+        toast.error(error || "Une erreur s'est produite");
+      }
     }
     return;
   };
@@ -60,6 +87,7 @@ const Signup = () => {
           className="w-full px-4 py-2 border rounded"
           onChange={handleChange}
         />
+        {errors.username && <p className="text-red-500">{errors.username}</p>}
         <input
           type="email"
           name="email"
@@ -68,6 +96,7 @@ const Signup = () => {
           className="w-full px-4 py-2 border rounded"
           onChange={handleChange}
         />
+        {errors.email && <p className="text-red-500">{errors.email}</p>}
         <input
           type="password"
           name="password"
@@ -76,6 +105,7 @@ const Signup = () => {
           className="w-full px-4 py-2 border rounded"
           onChange={handleChange}
         />
+        {errors.password && <p className="text-red-500">{errors.password}</p>}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
