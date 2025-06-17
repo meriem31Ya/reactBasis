@@ -11,7 +11,9 @@ const Card = ({ product }) => {
         <img
           className="object-cover"
           src={
-            product.images.at(0) ? product.images.at(0) : "../assets/react.svg"
+            product?.images?.at(0)
+              ? product.images.at(0)
+              : "../assets/react.svg"
           }
           alt="product image"
         />
